@@ -82,6 +82,7 @@ public final class ServletRequest implements Request {
     /**
      * Analogous to {@link HttpServletRequest#getServerPort()}.
      */
+    @Override
     public int serverPort() {
         return this.serverPort;
     }
@@ -89,6 +90,7 @@ public final class ServletRequest implements Request {
     /**
      * Analogous to {@link HttpServletRequest#getServerName()}.
      */
+    @Override
     public String serverName() {
         return this.serverName;
     }
@@ -96,6 +98,7 @@ public final class ServletRequest implements Request {
     /**
      * Analogous to {@link HttpServletRequest#getRemoteAddr()}.
      */
+    @Override
     public String remoteAddr() {
         return this.remoteAddr;
     }
@@ -103,6 +106,7 @@ public final class ServletRequest implements Request {
     /**
      * Analogous to {@link HttpServletRequest#getRequestURI()}.
      */
+    @Override
     public String uri() {
         return this.uri;
     }
@@ -110,6 +114,7 @@ public final class ServletRequest implements Request {
     /**
      * Analogous to {@link HttpServletRequest#getQueryString()}.
      */
+    @Override
     public Optional<String> queryString() {
         return Optional.ofNullable(this.queryString);
     }
@@ -117,6 +122,7 @@ public final class ServletRequest implements Request {
     /**
      * Analogous to {@link HttpServletRequest#getScheme()}.
      */
+    @Override
     public String scheme() {
         return this.scheme;
     }
@@ -124,6 +130,7 @@ public final class ServletRequest implements Request {
     /**
      * Analogous to {@link HttpServletRequest#getMethod()}, but will always be lowercase.
      */
+    @Override
     public String requestMethod() {
         return this.requestMethod;
     }
@@ -131,6 +138,7 @@ public final class ServletRequest implements Request {
     /**
      * Analogous to {@link HttpServletRequest#getProtocol()}.
      */
+    @Override
     public String protocol() {
         return this.protocol;
     }
@@ -140,37 +148,15 @@ public final class ServletRequest implements Request {
      * and if there are multiple values for a header, they are represented in the map as a comma separated
      * String like \"value1,value2,value3\".
      */
+    @Override
     public Map<String, String> headers() {
         return this.headers;
     }
 
     /**
-     * Analogous to {@link HttpServletRequest#getContentType()}, but will be an empty Optional
-     * if the content length was not given in the request.
-     */
-    public Optional<String> contentType() {
-        return Optional.ofNullable(this.contentType);
-    }
-
-    /**
-     * Analogous to {@link HttpServletRequest#getContentLength()}, but will be an empty Optional
-     * if the content length was reported as negative.
-     */
-    public Optional<Integer> contentLength() {
-        return Optional.ofNullable(this.contentLength);
-    }
-
-    /**
-     * Analogous to {@link HttpServletRequest#getCharacterEncoding()}, but will be an empty Optional
-     * if the character encoding was not given in the request.
-     */
-    public Optional<String> characterEncoding() {
-        return Optional.ofNullable(this.characterEncoding);
-    }
-
-    /**
      * Returns the SSL client certificate of the request, if one exists.
      */
+    @Override
     public Optional<X509Certificate> sslClientCert() {
         return Optional.ofNullable(this.sslClientCert);
     }
@@ -178,6 +164,7 @@ public final class ServletRequest implements Request {
     /**
      * Analogous to {@link HttpServletRequest#getInputStream()}.
      */
+    @Override
     public ServletInputStream body() {
         return this.body;
     }
