@@ -47,7 +47,7 @@ public final class JettyHandler extends AbstractHandler {
             HttpServletResponse httpServletResponse
     ) throws IOException {
         if (baseRequest.getDispatcherType() != DispatcherType.ERROR) {
-            final var request = new ServletRequest(
+            final var request = ServletRequest.from(
                     httpServletRequest
             );
             final var response = this.handler.handle(request).intoResponse();
