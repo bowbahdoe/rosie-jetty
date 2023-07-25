@@ -12,9 +12,14 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 /**
- * A request object, based on the structure Ring provides.
+ * A {@link Request} which proxies information from an {@link HttpServletRequest}.
+ *
  * <p>
- * https://github.com/ring-clojure/ring/blob/1.9.0/ring-servlet/src/ring/util/servlet.clj#L37
+ *     The logic in this class is taken from the <a href="https://github.com/ring-clojure/ring/blob/1.9.0/ring-servlet/src/ring/util/servlet.clj#L37">ring</a>
+ *     library for Clojure.
+ * </p>
+ *
+ *
  */
 public final class ServletRequest implements Request {
     private final int serverPort;
@@ -31,7 +36,6 @@ public final class ServletRequest implements Request {
     private final String characterEncoding; // nullable
     private final X509Certificate sslClientCert; // nullable
     private final ServletInputStream body;
-
 
     public ServletRequest(HttpServletRequest httpServletRequest) throws IOException {
         this.serverPort = httpServletRequest.getServerPort();
@@ -61,9 +65,10 @@ public final class ServletRequest implements Request {
                     StreamSupport.stream(
                             Spliterators.spliteratorUnknownSize(
                                     request.getHeaders(headerName).asIterator(),
-                                    Spliterator.ORDERED),
-                            false)
-                            .collect(Collectors.joining(","))
+                                    Spliterator.ORDERED
+                            ),
+                            false
+                    ).collect(Collectors.joining(","))
             );
         }
 

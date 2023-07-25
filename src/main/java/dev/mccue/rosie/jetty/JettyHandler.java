@@ -10,6 +10,10 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ * A Jetty {@link org.eclipse.jetty.server.Handler} which delegates request handling to an object implementing the
+ * {@link Handler} interface from this module.
+ */
 public final class JettyHandler extends AbstractHandler {
     private final Handler handler;
 
@@ -19,8 +23,6 @@ public final class JettyHandler extends AbstractHandler {
 
     void writeTo(Body body, Map<String, String> headers, HttpServletResponse httpServletResponse) {
         for (final var header : headers.entrySet()) {
-            // TODO: Support multiple values for a header.
-            // https://github.com/ring-clojure/ring/blob/1.9.0/ring-servlet/src/ring/util/servlet.clj#L75
             httpServletResponse.setHeader(header.getKey(), header.getValue());
         }
         if (headers.containsKey("Content-Type")) {
@@ -32,8 +34,6 @@ public final class JettyHandler extends AbstractHandler {
     }
 
     void writeTo(Response response, HttpServletResponse httpServletResponse) throws IOException {
-        // TODO: Figure out when / how best to handle when no status is set.
-        // https://github.com/ring-clojure/ring/blob/1.9.0/ring-servlet/src/ring/util/servlet.clj#L104
         httpServletResponse.setStatus(response.status());
         writeTo(response.body(), response.headers(), httpServletResponse);
         response.body().writeToStream(httpServletResponse.getOutputStream());

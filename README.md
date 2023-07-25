@@ -1,2 +1,1 @@
 ## Rosie adapter for Jetty
-
