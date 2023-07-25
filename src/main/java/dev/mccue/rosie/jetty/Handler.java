@@ -1,5 +1,6 @@
 package dev.mccue.rosie.jetty;
 
+import dev.mccue.rosie.IntoResponse;
 import dev.mccue.rosie.Response;
 
 import java.io.IOException;
@@ -12,5 +13,5 @@ import java.io.IOException;
  * </p>
  */
 public interface Handler {
-    Response handle(ServletRequest request) throws IOException;
+    IntoResponse handle(ServletRequest request) throws IOException;
 }

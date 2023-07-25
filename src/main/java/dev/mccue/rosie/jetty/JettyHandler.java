@@ -23,10 +23,10 @@ public final class JettyHandler extends AbstractHandler {
 
     void writeTo(Body body, Map<String, String> headers, HttpServletResponse httpServletResponse) {
         for (final var header : headers.entrySet()) {
-            httpServletResponse.setHeader(header.getKey(), header.getValue());
+            httpServletResponse.setHeader(header.getKey().toLowerCase(), header.getValue());
         }
-        if (headers.containsKey("Content-Type")) {
-            httpServletResponse.setContentType(headers.get("Content-Type"));
+        if (headers.containsKey("content-type")) {
+            httpServletResponse.setContentType(headers.get("content-type"));
         }
         else {
             body.defaultContentType().ifPresent(httpServletResponse::setContentType);
